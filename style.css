@@ -1,0 +1,150 @@
+:root{
+  --bg: #04060a;
+  --glass: rgba(255,255,255,.08);
+  --glass-2: rgba(255,255,255,.14);
+  --border: rgba(255,255,255,.18);
+  --txt: #e6edf6;
+  --muted: #a6b3c6;
+  --sa: #138808; /* green */
+  --sb: #ffffff; /* white */
+  --sc: #ff9933; /* saffron */
+  --chakra: #0a5bd3;
+  --shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif;
+  background: var(--bg);
+  color: var(--txt);
+  overflow:hidden;
+}
+
+/* Tricolor animated aura (same look) */
+.aura{
+  position:fixed; inset:-30vmax; z-index:-2;
+  filter: blur(80px) saturate(140%);
+  background: conic-gradient(from 0deg,
+    var(--sc), var(--sb), var(--sa), var(--sb), var(--sc));
+  animation: spin 40s linear infinite;
+  opacity:.45;
+}
+@keyframes spin{to{transform:rotate(1turn)}}
+
+/* Soft waves/gradient blobs */
+.waves{
+  position:fixed; inset:0; z-index:-1; opacity:.35;
+  background:
+    radial-gradient(1200px 400px at 10% 120%, var(--sc), transparent 60%),
+    radial-gradient(1200px 400px at 90% -20%, var(--sa), transparent 60%),
+    radial-gradient(900px 300px at 50% 0%, var(--chakra), transparent 60%);
+  animation: float 18s ease-in-out infinite alternate;
+}
+@keyframes float{to{transform:translateY(-30px)}}
+
+/* Fireworks canvas behind content */
+#fx{position:fixed; inset:0; z-index:0; pointer-events:none}
+
+/* Layout */
+.wrap{
+  position:relative; z-index:1; height:100dvh; width:100%;
+  display:grid; place-items:center; padding:24px;
+}
+.card{
+  width:min(100%,900px);
+  padding:clamp(16px, 3vw, 32px);
+  border-radius:28px;
+  background:linear-gradient(180deg, var(--glass-2), var(--glass));
+  border:1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+/* Title & subtitle (same styling) */
+.title{
+  font-weight:900; line-height:1.05; margin:6px 0 4px;
+  font-size:clamp(28px, 6vw, 72px);
+  letter-spacing:.4px;
+  text-shadow:0 2px 0 rgba(0,0,0,.3);
+}
+.title .saffron{color:var(--sc)}
+.title .white{color:var(--sb)}
+.title .green{color:var(--sa)}
+.subtitle{color:var(--muted); font-size:clamp(14px,2.4vw,18px)}
+
+.tag {
+  display: inline-flex;        
+  align-items: center;         
+  background-color: rgba(0, 0, 0, 0.1); 
+  padding: 9px 20px;           
+  border-radius: 20px;         
+  font-size: 16px;              
+  color: white; 
+  font-weight: 600;               
+}
+
+.tag .dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ff9800;
+  border-radius: 50%;           
+  margin-right: 8px;         
+}
+
+/* Chakra block and decorative lines */
+.center{
+  display:grid; grid-template-columns:1fr auto 1fr; gap:18px; align-items:center;
+  margin:18px 0 6px;
+}
+.hr-top{
+  border:none;height:2px;background:linear-gradient(90deg,var(--sc),transparent)
+}
+.hr-bottom{
+  border:none;height:2px;background:linear-gradient(90deg,transparent,var(--sa))
+}
+.chakra{
+  width: clamp(80px, 14vw, 140px);
+  aspect-ratio:1; display:grid; place-items:center;
+  filter: drop-shadow(0 10px 20px rgba(10,91,211,.35));
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.spin{animation: cspin 12s linear infinite}
+@keyframes cspin{to{transform:rotate(360deg)}}
+
+/* Floating flags */
+.floaters{ position:relative; height:0; }
+.flag{position:absolute; width:40px; aspect-ratio:3/2; border-radius:3px; box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.flag::before, .flag::after{content:""; position:absolute; inset:0; border-radius:3px}
+.flag::before{background:linear-gradient(#ff9933 33.33%, #fff 33.33% 66.66%, #138808 0)}
+.flag::after{
+  mask: radial-gradient(circle at 50% 50%, transparent 41%, black 42%);
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 41%, black 42%);
+  background:
+    radial-gradient(circle at 50% 50%, var(--chakra) 0 40%, transparent 41%),
+    repeating-conic-gradient(from 0deg, transparent 0 14.4deg, var(--chakra) 14.4deg 16deg);
+  opacity:.9
+}
+
+/* Float animation */
+@keyframes rise{from{transform:translateY(40px) rotate(0)} to{transform:translateY(-100vh) rotate(360deg)}}
+
+/* Safe area padding */
+@supports(padding:max(0px)){
+  .wrap{padding: max(24px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));}
+}
+
+/* footer */
+.credit {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   font-size:clamp(28px, 6vw, 72px);
+  letter-spacing:.4px;
+  text-shadow:0 2px 0 rgba(0,0,0,.3);
+}
+.credit{color:var(--muted); font-size:clamp(14px,2.4vw,14px)}

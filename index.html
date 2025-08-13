@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Independence Day 🇮🇳</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background layers -->
+  <div class="aura" aria-hidden="true"></div>
+  <div class="waves" aria-hidden="true"></div>
+  <canvas id="fx" aria-hidden="true"></canvas>
+
+  <!-- Main card -->
+  <div class="wrap">
+    <div class="card">
+      <div class="tag"><span class="dot"></span>15 AUGUST • INDEPENDENCE DAY</div>
+      <h1 class="title" aria-label="Happy Independence Day India">
+        <span class="saffron">Happy</span>
+        <span class="white">Independence</span>
+        <span class="green">Day</span>
+      </h1>
+
+      <p class="subtitle">Jai Hind!</p>
+
+      <div class="center">
+        <hr class="hr-top" />
+        <div class="chakra" aria-hidden>
+          <svg class="spin" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="var(--chakra)" stroke-width="4"/>
+            <g id="chakra-spokes" stroke="var(--chakra)" stroke-width="3" stroke-linecap="round" transform="translate(50,50)"></g>
+            <circle cx="50" cy="50" r="3.2" fill="var(--chakra)"/>
+          </svg>
+        </div>
+        <hr class="hr-bottom" />
+      </div>
+
+      <!-- Floating flags container -->
+      <div class="floaters" id="floaters" aria-hidden="true"></div>
+    </div>
+  </div>
+
+<footer class="credit">
+  Made with ❤️ by Ashib
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
